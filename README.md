@@ -48,12 +48,12 @@ cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BAR
 cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s03hjclearinv-tra/.
 ```
 
-There are 2 files and 4 subdirectories within the compendium, described below.
+There are 2 files and 3 subdirectories within the compendium, described below.
 
 Files
 -----
 compendium.sh - Contains the commands necessary to reproduce the work.
-README        - The file you are currently reading.
+README.md     - The file you are currently reading.
 
 
 Subdirectories
