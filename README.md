@@ -14,6 +14,40 @@ BART runs *require* at least 3 cores, to ensure that the Bayesian sampler
 is accurate; see ter Braak & Vrugt (2008) for more details.
 The final section of this document describes the software used.
 
+NOTE: To conserve space, we have not included line lists, and we have deleted TLI and opacity files. 
+The posteriors and band-integrated spectra have been compressed as .tar.gz files to further conserve space. 
+Commands below will re-create/extract these files.
+Beginning from the top-level directory,
+
+```
+cd BARTTest_v0.3
+tar -zxvf code-output/01BART/r01hd189733b/output.tar.gz -C code-output/01BART/r01hd189733b/
+tar -zxvf code-output/01BART/r01hd189733b/band_eclipse.tar.gz -C code-output/01BART/r01hd189733b/
+tar -zxvf code-output/01BART/s01hjcleariso-ecl/output.tar.gz -C code-output/01BART/s01hjcleariso-ecl/
+tar -zxvf code-output/01BART/s01hjcleariso-ecl/band_eclipse.tar.gz -C code-output/01BART/s01hjcleariso-ecl/
+tar -zxvf code-output/01BART/s01hjcleariso-tra/output.tar.gz -C code-output/01BART/s01hjcleariso-tra/
+tar -zxvf code-output/01BART/s01hjcleariso-tra/band_eclipse.tar.gz -C code-output/01BART/s01hjcleariso-tra/
+tar -zxvf code-output/01BART/s02hjclearnoinv-ecl/output.tar.gz -C code-output/01BART/s02hjclearnoinv-ecl/
+tar -zxvf code-output/01BART/s02hjclearnoinv-ecl/band_eclipse.tar.gz -C code-output/01BART/s02hjclearnoinv-ecl/
+tar -zxvf code-output/01BART/s02hjclearnoinv-tra/output.tar.gz -C code-output/01BART/s02hjclearnoinv-tra/
+tar -zxvf code-output/01BART/s02hjclearnoinv-tra/band_eclipse.tar.gz -C code-output/01BART/s02hjclearnoinv-tra/
+tar -zxvf code-output/01BART/s03hjclearinv-ecl/output.tar.gz -C code-output/01BART/s03hjclearinv-ecl/
+tar -zxvf code-output/01BART/s03hjclearinv-ecl/band_eclipse.tar.gz -C code-output/01BART/s03hjclearinv-ecl/
+tar -zxvf code-output/01BART/s03hjclearinv-tra/output.tar.gz -C code-output/01BART/s03hjclearinv-tra/
+tar -zxvf code-output/01BART/s03hjclearinv-tra/band_eclipse.tar.gz -C code-output/01BART/s03hjclearinv-tra/
+make bart
+make hitran_linelists
+make retrieval_tli
+make hd189_tli
+../BART/BART.py -c tests/s01hjcleariso/iso_emission.brt --justOpacity
+../BART/BART.py -c tests/r01hd189733b/HD189733b.brt --justOpacity
+cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s01hjcleariso-tra/.
+cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s02hjclearnoinv-ecl/.
+cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s02hjclearnoinv-tra/.
+cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s03hjclearinv-ecl/.
+cp -a code-output/01BART/s01hjcleariso-ecl/opacity_hjclear.dat code-output/01BART/s03hjclearinv-tra/.
+```
+
 There are 2 files and 4 subdirectories within the compendium, described below.
 
 Files
